@@ -1,0 +1,8 @@
+FROM amancevice/pandas:slim
+
+#COPY source_file target_file (. . - копируем все из директории в корень докерфайла)
+COPY . .  
+
+ENTRYPOINT ["python3"]
+#CMD - command line. если передаются аргументы при запуске, они заменяют CMD
+CMD ["pd_test.py"]
