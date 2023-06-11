@@ -35,13 +35,24 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: super linter
-        uses: super-linter/super-linter@v5
-        env:
-          PYTHON_PYLINT_CONFIG_FILE: .pylintrc
-          PYTHON_PYLINT_LINTER_RULES: .pylintrc
-          GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
+#       - name: super linter
+#         uses: super-linter/super-linter@v5
+#         env:
+#           PYTHON_PYLINT_CONFIG_FILE: .pylintrc
+#           PYTHON_PYLINT_LINTER_RULES: .pylintrc
+#           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
           
+  py_linter:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2  
+       - name: Python Linter
+         uses: sunnysid3up/python-linter@v0.1-beta.7
+         with:
+           mypy-options: "--ignore-missing-imports --show-error-codes"
+           pylint-options: "--rcfile=setup.cfg"
+           isort-options: "-w 100"
+           django: true
         
      
           
