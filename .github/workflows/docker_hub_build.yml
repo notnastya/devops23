@@ -35,3 +35,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: super linter
+        uses: super-linter/super-linter@v5
+        env:
+          PYTHON_PYLINT_CONFIG_FILE: .pylintrc
+        
+     
+          
